@@ -9,10 +9,12 @@
     <div class="col-9 pt-5 ">
       <div class="d-flex justify-content-between align-items-baseline">
         <h1>{{ $user->username }}</h1>
-        <a href="#">Add new post </a>
+        <a href="/p/create">Add new post </a>
+
       </div>
+      <a href="#">Edit Profile</a>
       <div class="d-flex">
-        <div class="pr-5"><strong>153</strong> posts</div>
+        <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
         <div class="pr-5"><strong>153k</strong> followers</div>
         <div class="pr-5"><strong>153gp</strong> following</div>
       </div>
@@ -20,6 +22,18 @@
       <div>{{ $user->profile->description }}</div>
       <div><a href="#">{{ $user->profile->url ?? 'N/a'}}</a></div>
     </div>
+  </div>
+
+  <div class="row pt-5">
+    @foreach($user->posts as $post)
+        <div class="col-4 pb-4">
+          <a href="/p/{{ $post->id }}">
+            <img src="/storage/{{ $post->image }}" class="w-100">
+          </a>
+
+        </div>
+    @endforeach
+
   </div>
 
 </div>
